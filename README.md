@@ -6,7 +6,7 @@
 
 ## ✨ Características Principales
 
-- **Experiencia Cinemática de Scroll**: Implementación de un motor de renderizado basado en Canvas (Infectus Engine) que sincroniza una secuencia de video de alta fidelidad con el desplazamiento del usuario.
+- **Experiencia de Scroll Inmersiva**: Implementación de un efecto de scroll avanzado que sincroniza una secuencia de video de alta fidelidad con el desplazamiento del usuario para resaltar la página.
 - **Rendimiento de Grado A**: Optimización de carga asíncrona de frames para garantizar 60 FPS constantes, eliminando el stuttering típico de videos pesados en web.
 - **Interfaz Premium**: Diseño visual de vanguardia con estética de "Cristal Líquido", tipografías modernas (Bebas Neue, Inter) y micro-animaciones fluidas.
 - **Arquitectura React**: Construido con componentes modulares y escalables para una fácil evolución del producto.
@@ -44,12 +44,8 @@
    ```
 
 ## 📐 Detalles Técnicos
+El sitio utiliza una técnica avanzada de renderizado de frames en un elemento `<canvas>` para lograr una fluidez total. En lugar de reproducir un archivo de video tradicional, se cargan frames optimizados que se dibujan dinámicamente según la posición del scroll, permitiendo una interacción inmediata y sin tiempos de carga durante el desplazamiento.
 
-### Infectus Scroll Engine
-El sitio utiliza una técnica avanzada de renderizado de frames en un elemento `<canvas>`. En lugar de reproducir un archivo `.mp4` (que causa latencia en el scroll), extraemos cada frame como una imagen optimizada `.webp` y las dibujamos dinámicamente según la posición del scroll. Esto permite:
-- Control total sobre la velocidad de reproducción.
-- Ausencia de buffering.
-- Interacción inmediata con el contenido.
 
 ## 📍 Localización
 Proyecto desarrollado para la ciudad de **Pasto, Nariño, Colombia**, con el objetivo de mejorar la cultura vial y la seguridad de los motociclistas locales.

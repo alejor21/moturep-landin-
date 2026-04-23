@@ -1,16 +1,59 @@
-# React + Vite
+# Moturep — Movilidad Segura y Conectada 🏍️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Moturep Hero](/public/uploads/fondo.jpeg)
 
-Currently, two official plugins are available:
+**Moturep** es la primera plataforma tecnológica diseñada específicamente para la comunidad de motociclistas en Pasto, Nariño. Esta landing page representa una experiencia digital de alto rendimiento, centrada en la seguridad vial, la geolocalización en tiempo real y la cohesión de la comunidad motera.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Características Principales
 
-## React Compiler
+- **Experiencia Cinemática de Scroll**: Implementación de un motor de renderizado basado en Canvas (Infectus Engine) que sincroniza una secuencia de video de alta fidelidad con el desplazamiento del usuario.
+- **Rendimiento de Grado A**: Optimización de carga asíncrona de frames para garantizar 60 FPS constantes, eliminando el stuttering típico de videos pesados en web.
+- **Interfaz Premium**: Diseño visual de vanguardia con estética de "Cristal Líquido", tipografías modernas (Bebas Neue, Inter) y micro-animaciones fluidas.
+- **Arquitectura React**: Construido con componentes modulares y escalables para una fácil evolución del producto.
+- **SEO & Accesibilidad**: Estructura semántica optimizada para motores de búsqueda y compatible con estándares modernos.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Tecnologías Utilizadas
 
-## Expanding the ESLint configuration
+- **Core**: [React.js](https://reactjs.org/) & [Vite](https://vitejs.dev/)
+- **Animaciones**: [GSAP](https://greensock.com/gsap/) (ScrollTrigger)
+- **Scroll Suave**: [Lenis](https://github.com/darkroomengineering/lenis)
+- **Renderizado**: HTML5 Canvas para secuencias de video GPU-accelerated.
+- **Estilos**: Vanilla CSS con arquitectura de variables personalizadas.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Instalación y Uso
+
+1. **Clonar el repositorio**:
+   ```bash
+   git clone https://github.com/alejor21/moturep-landin-.git
+   ```
+
+2. **Instalar dependencias**:
+   ```bash
+   cd moturep-landin-
+   npm install
+   ```
+
+3. **Ejecutar en modo desarrollo**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Construir para producción**:
+   ```bash
+   npm run build
+   ```
+
+## 📐 Detalles Técnicos
+
+### Infectus Scroll Engine
+El sitio utiliza una técnica avanzada de renderizado de frames en un elemento `<canvas>`. En lugar de reproducir un archivo `.mp4` (que causa latencia en el scroll), extraemos cada frame como una imagen optimizada `.webp` y las dibujamos dinámicamente según la posición del scroll. Esto permite:
+- Control total sobre la velocidad de reproducción.
+- Ausencia de buffering.
+- Interacción inmediata con el contenido.
+
+## 📍 Localización
+Proyecto desarrollado para la ciudad de **Pasto, Nariño, Colombia**, con el objetivo de mejorar la cultura vial y la seguridad de los motociclistas locales.
+
+---
+
+Desarrollado con ❤️ por la comunidad de Moturep.

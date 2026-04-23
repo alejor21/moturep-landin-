@@ -20,6 +20,17 @@ html {
 
 body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
+.video-sequence {
+  height: 500vh;
+  position: relative;
+}
+
+.post-video {
+  background: var(--bg);
+  position: relative;
+  z-index: 30;
+}
+
 /* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -28,6 +39,13 @@ nav {
   background: transparent;
   backdrop-filter: none;
   border-bottom: none;
+  transition: transform .35s ease, opacity .3s ease;
+  will-change: transform;
+}
+nav.nav-hidden {
+  transform: translateY(-110%);
+  opacity: 0;
+  pointer-events: none;
 }
 .logo {
   font-family: 'Bebas Neue', sans-serif;
@@ -336,5 +354,330 @@ footer {
   pointer-events: none; z-index: 0;
 }
 .dl-right { display: flex; flex-direction: column; gap: 16px; position: relative; z-index: 2; }
+
+.beta-signup {
+  background: rgba(19, 19, 31, 0.7);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  max-width: 420px;
+}
+.beta-caption {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.beta-form {
+  display: flex;
+  gap: 10px;
+}
+.beta-input {
+  flex: 1;
+  min-width: 0;
+  background: rgba(13, 13, 20, 0.9);
+  border: 1px solid var(--border);
+  color: var(--white);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.beta-input::placeholder {
+  color: rgba(160, 160, 184, 0.7);
+}
+.beta-input:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.18);
+}
+.beta-submit {
+  border: 1px solid var(--purple);
+  background: var(--purple);
+  color: var(--white);
+  border-radius: 10px;
+  padding: 0 16px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+}
+.beta-submit:hover {
+  transform: translateY(-1px);
+  background: #8b5cf6;
+}
+.beta-feedback {
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.beta-feedback.success {
+  color: #8ff4b8;
+}
+.beta-feedback.error {
+  color: #ff9da0;
+}
+.beta-feedback.info {
+  color: #b7b9ff;
+}
+
+@media (max-width: 1024px) {
+  nav {
+    padding: 0 24px;
+    height: 72px;
+  }
+
+  .hero-content,
+  .features,
+  .how,
+  .ranks-hd,
+  .download,
+  footer {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .bento {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-bottom {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .steps {
+    max-width: 100%;
+  }
+
+  .steps::before {
+    left: 10%;
+    right: 10%;
+  }
+
+  .download {
+    gap: 36px;
+  }
+
+  .dl-title {
+    font-size: clamp(44px, 8vw, 72px);
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 0 16px;
+    height: 68px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-cta {
+    padding: 8px 14px;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+  }
+
+  .logo {
+    font-size: 24px;
+    letter-spacing: 2px;
+  }
+
+  .hero {
+    min-height: 100dvh;
+  }
+
+  .hero-content,
+  .features,
+  .how,
+  .ranks-hd,
+  .download,
+  footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-content {
+    padding-top: 96px;
+    max-width: 100%;
+  }
+
+  .hero-h1 {
+    font-size: clamp(50px, 16vw, 80px);
+    margin-bottom: 20px;
+  }
+
+  .hero-tagline {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+    max-width: 100%;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+
+  .btn-red,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .social-row {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .video-sequence {
+    height: 320vh;
+  }
+
+  .scroll-section {
+    min-height: 70vh;
+  }
+
+  .align-left,
+  .align-right {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .marquee-text {
+    font-size: 16vw;
+  }
+
+  .stats-grid {
+    flex-direction: column;
+  }
+
+  .stat-item {
+    max-width: 100%;
+    padding: 26px 16px;
+  }
+
+  .stat-divider {
+    width: calc(100% - 32px);
+    height: 1px;
+    margin: 0 16px;
+  }
+
+  .features,
+  .how,
+  .ranks,
+  .download {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .sec-title,
+  .ranks-title {
+    margin-bottom: 32px;
+  }
+
+  .bento {
+    gap: 12px;
+  }
+
+  .bento-bottom {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    padding: 26px 20px;
+  }
+
+  .steps {
+    flex-direction: column;
+    margin-top: 32px;
+    gap: 28px;
+  }
+
+  .steps::before {
+    display: none;
+  }
+
+  .step {
+    padding: 0;
+  }
+
+  .download {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+  }
+
+  .dl-sub {
+    max-width: 100%;
+  }
+
+  .dl-right {
+    width: 100%;
+  }
+
+  .store-btn {
+    width: 100%;
+    padding: 14px 16px;
+  }
+
+  .store-btn-big {
+    font-size: 20px;
+  }
+
+  .beta-signup {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .beta-form {
+    flex-direction: column;
+  }
+
+  .beta-submit {
+    min-height: 42px;
+  }
+
+  .ranks-scroll {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .f-links {
+    flex-wrap: wrap;
+    gap: 14px 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-h1 {
+    font-size: clamp(44px, 15vw, 64px);
+  }
+
+  .hero-eyebrow,
+  .sec-label {
+    letter-spacing: 2px;
+  }
+
+  .stat-num {
+    font-size: 48px;
+  }
+
+  .rank-card {
+    min-width: 136px;
+  }
+}
 
 

@@ -19,36 +19,47 @@ function App() {
   const containerRef = useRef(null);
 
   useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // 1. Lenis Config (Skill Rule 31 & Immediate Scroll)
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      lerp: 0.18, // Increased for "immediate" feel
-      wheelMultiplier: 1.1,
-      smoothWheel: true,
-    });
+    const shouldUseLenis = !isMobile && !prefersReducedMotion;
+    const lenis = shouldUseLenis
+      ? new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          lerp: 0.18,
+          wheelMultiplier: 1.1,
+          smoothWheel: true,
+        })
+      : null;
 
     function raf(time) {
+      if (!lenis) return;
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    if (lenis) {
+      requestAnimationFrame(raf);
+    }
 
     // Integrate with ScrollTrigger
-    lenis.on('scroll', ScrollTrigger.update);
-    ScrollTrigger.scrollerProxy(document.body, {
-      scrollTop(value) {
-        return arguments.length ? lenis.scrollTo(value, { immediate: true }) : lenis.scroll;
-      },
-      getBoundingClientRect() {
-        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-      },
-    });
+    if (lenis) {
+      lenis.on('scroll', ScrollTrigger.update);
+      ScrollTrigger.scrollerProxy(document.body, {
+        scrollTop(value) {
+          return arguments.length ? lenis.scrollTo(value, { immediate: true }) : lenis.scroll;
+        },
+        getBoundingClientRect() {
+          return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+        },
+      });
+    }
 
     // 2. Circular Reveal Transition (Skill Rule 74-76)
     // The canvas should reveal when the hero scrolls up
     const canvasWrap = document.querySelector('.canvas-wrap');
-    if (canvasWrap) {
+    if (canvasWrap && !isMobile && !prefersReducedMotion) {
       gsap.set(canvasWrap, { 
         clipPath: 'circle(0% at 50% 50%)',
         opacity: 0 
@@ -71,23 +82,27 @@ function App() {
 
     // 3. Staggered Reveals for Sections (Skill Rule 37)
     const revealItems = document.querySelectorAll('.reveal-item');
-    revealItems.forEach((item) => {
-      gsap.fromTo(item, 
-        { opacity: 0, y: 60 },
-        { 
-          opacity: 1, y: 0, duration: 1.2, ease: "power4.out",
-          scrollTrigger: {
-            trigger: item,
-            start: "top 85%",
-            toggleActions: "play none none reverse"
+    if (isMobile || prefersReducedMotion) {
+      gsap.set(revealItems, { opacity: 1, y: 0 });
+    } else {
+      revealItems.forEach((item) => {
+        gsap.fromTo(item, 
+          { opacity: 0, y: 60 },
+          { 
+            opacity: 1, y: 0, duration: 1.2, ease: "power4.out",
+            scrollTrigger: {
+              trigger: item,
+              start: "top 85%",
+              toggleActions: "play none none reverse"
+            }
           }
-        }
-      );
-    });
+        );
+      });
+    }
 
     // 4. Hide Canvas on Exit (Transition to Stats)
     const statsSection = document.querySelector('.stats-overlay');
-    if (statsSection && canvasWrap) {
+    if (statsSection && canvasWrap && !isMobile && !prefersReducedMotion) {
       ScrollTrigger.create({
         trigger: statsSection,
         start: "top 90%",
@@ -98,7 +113,9 @@ function App() {
 
 
     return () => {
-      lenis.destroy();
+      if (lenis) {
+        lenis.destroy();
+      }
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, []);
@@ -111,7 +128,7 @@ function App() {
       <Hero />
 
       {/* CANVAS VIDEO SECTION (Sticky logic handled in component/css) */}
-      <div id="video-sequence" style={{ height: '500vh', position: 'relative' }}>
+      <div id="video-sequence" className="video-sequence">
         <CanvasScroll frameCount={192} imagePath="/frames/frame_" />
         
         {/* TEXT OVER VIDEO */}
@@ -145,7 +162,7 @@ function App() {
 
       <Stats />
       
-      <div id="post-video" style={{ background: 'var(--bg)', position: 'relative', zIndex: 30 }}>
+      <div id="post-video" className="post-video">
         <Features />
         <HowItWorks />
         <Ranks />

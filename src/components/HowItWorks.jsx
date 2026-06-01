@@ -8,7 +8,7 @@ const HowItWorks = () => {
       <div className="steps">
         <div className="step">
           <div className="step-num">01</div>
-          <div className="step-title">Descarga el APK</div>
+          <div className="step-title">Solicita la prueba</div>
           <p className="step-body">Gratis. Sin suscripción.</p>
         </div>
         <div className="step">

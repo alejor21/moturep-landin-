@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Hero = () => {
-  const apkPath = '/apk/app-release.apk';
+const whatsappUrl = 'https://wa.me/573162578851?text=Hola%2C%20quiero%20solicitar%20la%20versi%C3%B3n%20de%20prueba%20de%20Moturep';
 
+const Hero = () => {
   return (
     <section className="hero">
       <img src="/uploads/fondo.jpeg" alt="" className="hero-bg" />
@@ -16,7 +16,7 @@ const Hero = () => {
         </h1>
         <p className="hero-tagline">La primera app para motociclistas de Pasto. Geolocalización, comunidad y seguridad vial en tu bolsillo.</p>
         <div className="hero-actions">
-          <a href={apkPath} className="btn-red" download>DESCARGAR APK</a>
+          <a href={whatsappUrl} className="btn-red" target="_blank" rel="noreferrer">SOLICITAR VERSIÓN DE PRUEBA</a>
           <a href="#features" className="btn-outline">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="12" cy="12" r="10" />

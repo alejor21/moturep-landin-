@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+const whatsappUrl = 'https://wa.me/573162578851?text=Hola%2C%20quiero%20solicitar%20la%20versi%C3%B3n%20de%20prueba%20de%20Moturep';
+
 const Navbar = () => {
-  const apkPath = '/apk/app-release.apk';
   const [isHidden, setIsHidden] = useState(false);
   const lastScrollY = useRef(0);
 
@@ -40,7 +41,7 @@ const Navbar = () => {
         <li><a href="#ranks">Rangos</a></li>
         <li><a href="#download">Descargar</a></li>
       </ul>
-      <a className="nav-cta" href={apkPath} download>Descargar APK</a>
+      <a className="nav-cta" href={whatsappUrl} target="_blank" rel="noreferrer">Solicitar prueba</a>
     </nav>
   );
 };
